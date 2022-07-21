@@ -2,6 +2,7 @@
 using EFCoreRelationships.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EFCoreRelationships.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220721165728_CharacterSkillRelationship")]
+    partial class CharacterSkillRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,13 +25,13 @@ namespace EFCoreRelationships.Migrations
 
             modelBuilder.Entity("CharacterSkill", b =>
                 {
-                    b.Property<int>("CharactersId")
+                    b.Property<int>("MyPropertyId")
                         .HasColumnType("integer");
 
                     b.Property<int>("SkillsId")
                         .HasColumnType("integer");
 
-                    b.HasKey("CharactersId", "SkillsId");
+                    b.HasKey("MyPropertyId", "SkillsId");
 
                     b.HasIndex("SkillsId");
 
@@ -129,7 +131,7 @@ namespace EFCoreRelationships.Migrations
                 {
                     b.HasOne("EFCoreRelationships.Entity.Character", null)
                         .WithMany()
-                        .HasForeignKey("CharactersId")
+                        .HasForeignKey("MyPropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
